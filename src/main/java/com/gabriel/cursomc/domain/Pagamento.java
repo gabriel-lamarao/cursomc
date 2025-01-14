@@ -3,6 +3,8 @@ package com.gabriel.cursomc.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.gabriel.cursomc.domain.enums.EstadoPagamento;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
@@ -13,7 +15,7 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pagamento implements Serializable {
+public abstract class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,10 +32,10 @@ public class Pagamento implements Serializable {
 
 	}
 
-	public Pagamento(Integer id, Integer estado, Pedido pedido) {
+	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estado = estado;
+		this.estado = estado.getCod();
 		this.pedido = pedido;
 	}
 
@@ -45,12 +47,12 @@ public class Pagamento implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getEstado() {
-		return estado;
+	public EstadoPagamento getEstado() {
+		return EstadoPagamento.toEnum(estado);
 	}
 
-	public void setEstado(Integer estado) {
-		this.estado = estado;
+	public void setEstado(EstadoPagamento estado) {
+		this.estado = estado.getCod();
 	}
 
 	public Pedido getPedido() {

@@ -1,9 +1,11 @@
 package com.gabriel.cursomc.domain;
 
+import com.gabriel.cursomc.domain.enums.EstadoPagamento;
+
 import jakarta.persistence.Entity;
 
 @Entity
-public class PagamentoComCartao {
+public class PagamentoComCartao extends Pagamento {
 	private static final long serialVersionUID = 1L;
 
 	private Integer numeroDeParcelas;
@@ -12,8 +14,16 @@ public class PagamentoComCartao {
 
 	}
 
-	public PagamentoComCartao(Integer numeroDeParcelas) {
-		super();
+	public PagamentoComCartao(Integer id, EstadoPagamento estado, Pedido pedido, Integer numeroDeParcelas) {
+		super(id, estado, pedido);
+		this.numeroDeParcelas = numeroDeParcelas;
+	}
+
+	public Integer getNumeroDeParcelas() {
+		return numeroDeParcelas;
+	}
+
+	public void setNumeroDeParcelas(Integer numeroDeParcelas) {
 		this.numeroDeParcelas = numeroDeParcelas;
 	}
 

@@ -24,7 +24,7 @@ public class Pedido implements Serializable {
 	private Integer id;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date instance;
+	private Date instante;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private Pagamento pagamento;
@@ -32,19 +32,19 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
+
 	@ManyToOne
-	@JoinColumn(name = "endereco_id")
+	@JoinColumn(name = "endereco_de_entrega_id")
 	private Endereco enderecoDeEntrega;
 
 	public Pedido() {
 
 	}
 
-	public Pedido(Integer id, Date instance, Pagamento pagamento, Cliente cliente, Endereco enderecoDeEntrega) {
+	public Pedido(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
 		super();
 		this.id = id;
-		this.instance = instance;
-		this.pagamento = pagamento;
+		this.instante = instante;
 		this.cliente = cliente;
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
@@ -58,11 +58,11 @@ public class Pedido implements Serializable {
 	}
 
 	public Date getInstance() {
-		return instance;
+		return instante;
 	}
 
 	public void setInstance(Date instance) {
-		this.instance = instance;
+		this.instante = instance;
 	}
 
 	public Pagamento getPagamento() {
