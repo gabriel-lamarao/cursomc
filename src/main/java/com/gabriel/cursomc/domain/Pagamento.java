@@ -3,6 +3,7 @@ package com.gabriel.cursomc.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gabriel.cursomc.domain.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
@@ -23,6 +24,7 @@ public abstract class Pagamento implements Serializable {
 
 	private Integer estado;
 
+	@JsonBackReference
 	@JoinColumn(name = "pedido_id")
 	@OneToOne
 	@MapsId
