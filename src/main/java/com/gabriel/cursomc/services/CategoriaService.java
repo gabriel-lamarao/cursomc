@@ -1,8 +1,8 @@
 package com.gabriel.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +25,9 @@ public class CategoriaService {
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return repo.save(obj);
+	}
+	
+	public List<Categoria> buscarTodas() {
+		return repo.findAll();
 	}
 }
