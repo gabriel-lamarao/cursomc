@@ -5,23 +5,23 @@ import java.io.Serializable;
 public class StandardError implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Integer ststus;
+	private Integer status;
 	private String msg;
 	private Long timeStamp;
 
-	public StandardError(Integer ststus, String msg, Long timeStamp) {
+	public StandardError(Integer status, String msg, Long timeStamp) {
 		super();
-		this.ststus = ststus;
+		this.status = status;
 		this.msg = msg;
 		this.timeStamp = timeStamp;
 	}
 
-	public Integer getStstus() {
-		return ststus;
+	public Integer getstatus() {
+		return status;
 	}
 
-	public void setStstus(Integer ststus) {
-		this.ststus = ststus;
+	public void setstatus(Integer status) {
+		this.status = status;
 	}
 
 	public String getMsg() {
