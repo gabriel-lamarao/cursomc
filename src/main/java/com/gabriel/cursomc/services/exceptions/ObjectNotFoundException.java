@@ -1,4 +1,4 @@
-package com.gabriel.cursomc.exceptions;
+package com.gabriel.cursomc.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException{
 	private static final long serrialVersionUID = 1L;

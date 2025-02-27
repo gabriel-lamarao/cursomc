@@ -17,7 +17,7 @@ public class ClienteService {
 	public Cliente find(Integer id) {
 		Optional<Cliente> obj = repo.findById(id);
 		
-		return obj.orElseThrow(() -> new com.gabriel.cursomc.exceptions.ObjectNotFoundException(
+		return obj.orElseThrow(() -> new com.gabriel.cursomc.services.exceptions.ObjectNotFoundException(
 				"Objto não encontrado! Id: "+ id + ", Tipo: "+ Cliente.class.getName()));
 		
 	}

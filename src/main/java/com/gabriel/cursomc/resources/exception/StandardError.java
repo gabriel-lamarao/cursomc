@@ -16,11 +16,11 @@ public class StandardError implements Serializable{
 		this.timeStamp = timeStamp;
 	}
 
-	public Integer getstatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setstatus(Integer status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 

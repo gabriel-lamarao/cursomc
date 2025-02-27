@@ -17,7 +17,7 @@ public class PedidoService {
 	public Pedido find(Integer id) {
 		Optional<Pedido> obj = repo.findById(id);
 		
-		return obj.orElseThrow(() -> new com.gabriel.cursomc.exceptions.ObjectNotFoundException(
+		return obj.orElseThrow(() -> new com.gabriel.cursomc.services.exceptions.ObjectNotFoundException(
 				"Objto não encontrado! Id: "+ id + ", Tipo: "+ Pedido.class.getName()));
 		
 	}
