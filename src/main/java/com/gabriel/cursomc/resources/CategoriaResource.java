@@ -2,10 +2,10 @@ package com.gabriel.cursomc.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.gabriel.cursomc.domain.Categoria;
+import com.gabriel.cursomc.dto.CategoriaDto;
 import com.gabriel.cursomc.services.CategoriaService;
 
 @RestController
@@ -33,23 +34,26 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(obj);
 
 	}
-	
+
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id){
+	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
-		
+
 	}
-	
+
 	@DeleteMapping(value = "{id}")
-	public ResponseEntity<Void> delete(@PathVariable Integer id){
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+
 	@GetMapping
-	public ResponseEntity<List<Categoria>> getAllCategories(){
-		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+	public ResponseEntity<List<CategoriaDto>> findAll() {
+		List<Categoria> list = service.findAll();
+		List<CategoriaDto> listDto = list.stream().map(obj -> new CategoriaDto(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 
 	@PostMapping
