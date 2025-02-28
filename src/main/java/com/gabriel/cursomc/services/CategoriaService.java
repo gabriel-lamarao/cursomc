@@ -5,6 +5,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.gabriel.cursomc.domain.Categoria;
@@ -36,6 +40,12 @@ public class CategoriaService {
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
 		return repo.save(obj);
+	}
+	
+	public Page<Categoria> findAllPages(Integer page, Integer linesPerPage, String sortBy, String direction){
+		Sort.Direction sortDirection = Sort.Direction.fromString(direction);
+		Pageable pageable = PageRequest.of(page, linesPerPage, Sort.by(sortDirection, sortBy));
+		return repo.findAll(pageable);
 	}
 
 	public void delete(Integer id) {
